@@ -1,0 +1,19 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Cairo', 'Noto Naskh Arabic', serif;
+  background-color: #fdfaf5;
+  color: #3e2e20;
+}
+
+.hero-pattern {
+  background-image: url('https://www.transparenttextures.com/patterns/arabesque.png');
+  background-repeat: repeat;
+}
+
+.card {
+  @apply bg-white rounded-xl shadow-md p-4 border border-amber-100 hover:shadow-lg transition;
+}

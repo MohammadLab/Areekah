@@ -1,0 +1,29 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "sofas"
+    label: "Sofas"
+    folder: "content/sofas"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Category", name: "category", widget: "hidden", default: "sofas"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}
+
+  - name: "stands"
+    label: "Stands"
+    folder: "content/stands"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Category", name: "category", widget: "hidden", default: "stands"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}
