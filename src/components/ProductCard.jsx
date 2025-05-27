@@ -23,16 +23,16 @@ export default function ProductCard({ item, index }) {
 
     if (images.length === 2) {
       return (
-        <div className="relative w-72 h-72 cursor-zoom-in" onClick={() => setZoom(true)}>
+        <div className="flex gap-2 cursor-zoom-in" onClick={() => setZoom(true)}>
           <img
             src={images[0]}
             alt={item.title}
-            className="w-full h-full object-cover rounded"
+            className="w-72 h-72 object-cover rounded"
           />
           <img
             src={images[1]}
             alt={item.title}
-            className="absolute bottom-0 right-0 w-36 h-36 object-cover rounded border border-white"
+            className="w-36 h-36 object-cover rounded"
           />
         </div>
       );
@@ -40,26 +40,29 @@ export default function ProductCard({ item, index }) {
 
     if (images.length >= 3) {
       return (
-        <div className="relative w-72 h-72 cursor-zoom-in" onClick={() => setZoom(true)}>
+        <div className="flex gap-2 cursor-zoom-in" onClick={() => setZoom(true)}>
           <img
             src={images[0]}
             alt={item.title}
-            className="w-full h-full object-cover rounded"
+            className="w-72 h-72 object-cover rounded"
           />
-          <img
-            src={images[1]}
-            alt={item.title}
-            className="absolute bottom-0 right-0 w-36 h-36 object-cover rounded border border-white"
-          />
-          <img
-            src={images[2]}
-            alt={item.title}
-            className="absolute top-0 right-0 w-36 h-36 object-cover rounded border border-white"
-          />
+          <div className="flex flex-col gap-2">
+            <img
+              src={images[1]}
+              alt={item.title}
+              className="w-36 h-36 object-cover rounded"
+            />
+            <img
+              src={images[2]}
+              alt={item.title}
+              className="w-36 h-36 object-cover rounded"
+            />
+          </div>
         </div>
       );
     }
   };
+
 
 
   return (
