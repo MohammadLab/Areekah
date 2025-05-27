@@ -60,3 +60,14 @@ collections:
       - {label: "Category", name: "category", widget: "hidden", default: "changing_screen"}
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}
+
+  - name: "swings"
+    label: "Swings"
+    folder: "content/swings"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Category", name: "category", widget: "hidden", default: "swings"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}

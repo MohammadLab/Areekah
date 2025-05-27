@@ -27,6 +27,11 @@ const categories = [
     slug: "changing_screen",
     description: "Traditional wooden screens with intricate Syrian designs, perfect for partitioning or decorating.",
   },
+  {
+    name: "Swings",
+    slug: "swings",
+    description: "Relax in style with our elegant Syrian-inspired swings, perfect for indoor and outdoor spaces.",
+  },
 ];
 
 export default function Home() {
@@ -42,8 +47,6 @@ export default function Home() {
       </div>
 
       <div className="p-6 space-y-8 max-w-4xl mx-auto">
-
-        {/* Thin orange "All Products" button at the top */}
         <div className="text-center mb-4">
           <Link
             to="/all-products"
