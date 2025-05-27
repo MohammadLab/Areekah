@@ -7,9 +7,13 @@ export default function ProductCard({ item, index }) {
 
   return (
     <>
-      <div className={`flex flex-col md:flex-row items-center gap-4 ${isEven ? "" : "md:flex-row-reverse"}`}>
+      <div
+        className={`flex flex-col md:flex-row items-center gap-8 ${
+          isEven ? "" : "md:flex-row-reverse"
+        }`}
+      >
         <div
-          className="flex-shrink-0 w-48 h-48 overflow-hidden rounded cursor-zoom-in"
+          className="flex-shrink-0 w-72 h-72 overflow-hidden rounded cursor-zoom-in shadow"
           onClick={() => setZoom(true)}
         >
           <img
@@ -18,9 +22,9 @@ export default function ProductCard({ item, index }) {
             className="w-full h-full object-cover rounded"
           />
         </div>
-        <div className="flex-1 text-left">
-          <h3 className="text-xl font-bold">{item.title}</h3>
-          <p className="text-sm text-gray-600">{item.description}</p>
+        <div className="flex-1 text-left space-y-2">
+          <h3 className="text-3xl font-bold">{item.title}</h3>
+          <p className="text-lg text-gray-700">{item.description}</p>
         </div>
       </div>
 
@@ -30,7 +34,7 @@ export default function ProductCard({ item, index }) {
           onClick={() => setZoom(false)}
         >
           <div
-            className="bg-white p-4 rounded shadow-lg max-w-3xl w-full relative"
+            className="bg-white p-4 rounded shadow-lg max-w-4xl w-full relative"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -44,13 +48,13 @@ export default function ProductCard({ item, index }) {
                 <img
                   key={i}
                   src={img}
-                  className="h-96 object-contain rounded"
+                  className="h-[36rem] object-contain rounded"
                   alt={item.title}
                 />
               ))}
             </div>
-            <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
-            <p className="text-base text-gray-600">{item.description}</p>
+            <h3 className="text-3xl font-bold mb-2">{item.title}</h3>
+            <p className="text-lg text-gray-700">{item.description}</p>
           </div>
         </div>
       )}
