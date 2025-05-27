@@ -4,16 +4,17 @@ export default function ProductCard({ item, index }) {
   const [zoom, setZoom] = useState(false);
   const images = item.images || [];
   const isEven = index % 2 === 0;
+  const bgColor = isEven ? "bg-white" : "bg-gray-100";
 
   return (
     <>
       <div
-        className={`flex flex-col md:flex-row items-center gap-8 ${
+        className={`flex flex-col md:flex-row items-center gap-8 p-4 rounded shadow ${bgColor} ${
           isEven ? "" : "md:flex-row-reverse"
         }`}
       >
         <div
-          className="flex-shrink-0 w-72 h-72 overflow-hidden rounded cursor-zoom-in shadow"
+          className="flex-shrink-0 w-72 h-72 overflow-hidden rounded cursor-zoom-in"
           onClick={() => setZoom(true)}
         >
           <img
