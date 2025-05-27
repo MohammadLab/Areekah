@@ -1,12 +1,15 @@
 import { useState } from "react";
 import FilterSidebar from "../components/FilterSidebar";
-import products from "../data/products";
+import { products } from "../data/products";
 
 export default function AllProducts() {
-  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
+  // Flatten all products into one array for simplicity
+  const allProducts = Object.values(products).flat();
 
   const handleFilterChange = ({ category, price }) => {
-    let filtered = [...products];
+    let filtered = [...allProducts];
 
     if (category) {
       filtered = filtered.filter((p) => p.category === category);
@@ -29,15 +32,15 @@ export default function AllProducts() {
       <FilterSidebar onFilterChange={handleFilterChange} />
 
       <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {filteredProducts.map((item) => (
-          <div key={item.id} className="border rounded p-4 shadow">
+        {(filteredProducts.length > 0 ? filteredProducts : allProducts).map((item, index) => (
+          <div key={index} className="border rounded p-4 shadow">
             <img
-              src={item.images[0]}
-              alt={item.title}
+              src={`/images/${item.folder}/1.jpg`}
+              alt={item.name}
               className="w-full h-48 object-cover mb-2 rounded"
             />
-            <h3 className="text-lg font-semibold">{item.title}</h3>
-            <p className="text-sm text-gray-600">${item.price}</p>
+            <h3 className="text-lg font-semibold">{item.name}</h3>
+            {item.price && <p className="text-sm text-gray-600">${item.price}</p>}
           </div>
         ))}
       </div>
