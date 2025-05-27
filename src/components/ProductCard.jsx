@@ -1,50 +1,49 @@
 import { useState } from "react";
 
-export default function ProductCard({ item }) {
+export default function ProductCard({ item, index }) {
   const [zoom, setZoom] = useState(false);
   const media = item.media || [];
+  const isEven = index % 2 === 0;
 
-  const renderMedia = () => {
-    return (
-      <div
-        className="flex flex-col gap-2 cursor-zoom-in w-full md:w-auto"
-        onClick={() => setZoom(true)}
-      >
-        {media.slice(0, 3).map((mediaFile, i) => {
-          const isVideo = mediaFile.endsWith(".mp4");
-          return isVideo ? (
-            <video
-              key={i}
-              src={mediaFile}
-              controls
-              className="w-72 h-72 object-cover rounded"
-            />
-          ) : (
-            <img
-              key={i}
-              src={mediaFile}
-              alt={item.title}
-              className="w-72 h-72 object-cover rounded"
-            />
-          );
-        })}
-      </div>
-    );
-  };
+  const renderMedia = () => (
+    <div
+      className="flex flex-col gap-2 cursor-zoom-in w-full md:w-auto"
+      onClick={() => setZoom(true)}
+    >
+      {media.slice(0, 3).map((mediaFile, i) => {
+        const isVideo = mediaFile.endsWith(".mp4");
+        return isVideo ? (
+          <video
+            key={i}
+            src={mediaFile}
+            controls
+            className="w-72 h-72 object-cover rounded"
+          />
+        ) : (
+          <img
+            key={i}
+            src={mediaFile}
+            alt={item.title}
+            className="w-72 h-72 object-cover rounded"
+          />
+        );
+      })}
+    </div>
+  );
 
   return (
     <>
       <div
-        className="flex flex-col md:flex-row items-center gap-8 p-4 rounded shadow bg-white"
+        className={`flex flex-col md:flex-row items-center gap-8 p-4 rounded shadow ${
+          isEven ? "bg-white" : "bg-gray-100"
+        } ${!isEven ? "md:flex-row-reverse" : ""}`}
       >
-        {/* Always render text first */}
+        {renderMedia()}
+
         <div className="flex-1 text-left space-y-2">
           <h3 className="text-3xl font-bold">{item.title}</h3>
           <p className="text-lg text-gray-700">{item.description}</p>
         </div>
-
-        {/* Always render media on the right */}
-        {renderMedia()}
       </div>
 
       {zoom && (
