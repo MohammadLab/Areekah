@@ -96,7 +96,7 @@ export default function ProductCard({ item, index }) {
           onClick={() => setQuickView(false)}
         >
           <div
-            className="bg-white p-4 rounded shadow-lg max-w-4xl w-full relative"
+            className="bg-white p-8 rounded shadow-lg max-w-4xl w-full relative"
             onClick={(e) => e.stopPropagation()}
           >
             <button
