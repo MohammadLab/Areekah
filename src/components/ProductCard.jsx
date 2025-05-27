@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export default function ProductCard({ item, index }) {
   const [zoom, setZoom] = useState(false);
   const images = item.images || [];
@@ -7,7 +9,7 @@ export default function ProductCard({ item, index }) {
     <div className={`flex flex-col md:flex-row items-center gap-4 ${isEven ? "" : "md:flex-row-reverse"}`}>
       <div className="flex-shrink-0 w-48 h-48 overflow-hidden rounded">
         <img
-          src={images[0]}
+          src={images[0] || "/images/placeholder.jpg"} // fallback for missing images
           alt={item.title}
           className="w-full h-full object-cover cursor-zoom-in rounded"
           onClick={() => setZoom(!zoom)}
