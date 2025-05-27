@@ -1,8 +1,20 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export default function Header() {
   const [showMenu, setShowMenu] = useState(false);
+  const timeoutRef = useRef(null);
+
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setShowMenu(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setShowMenu(false);
+    }, 100);
+  };
 
   return (
     <header className="bg-white shadow relative z-50 font-arabic">
@@ -17,28 +29,16 @@ export default function Header() {
 
         {/* Navigation Tabs */}
         <nav className="flex gap-6 text-gray-700 text-sm font-medium">
-          <Link
-            to="/"
-            className="hover:text-copper transition"
-          >
+          <Link to="/" className="hover:text-copper transition">
             Home
           </Link>
-          <Link
-            to="/about"
-            className="hover:text-copper transition"
-          >
+          <Link to="/about" className="hover:text-copper transition">
             About
           </Link>
-          <Link
-            to="/contact"
-            className="hover:text-copper transition"
-          >
+          <Link to="/contact" className="hover:text-copper transition">
             Contact
           </Link>
-          <Link
-            to="/terms"
-            className="hover:text-copper transition"
-          >
+          <Link to="/terms" className="hover:text-copper transition">
             Terms & Privacy
           </Link>
         </nav>
@@ -46,8 +46,8 @@ export default function Header() {
         {/* Explore / Mega Menu */}
         <div
           className="relative"
-          onMouseEnter={() => setShowMenu(true)}
-          onMouseLeave={() => setShowMenu(false)}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           <button className="px-4 py-2 border border-orange-500 text-orange-500 rounded-full text-sm hover:bg-orange-500 hover:text-white transition">
             Explore
