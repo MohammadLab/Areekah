@@ -1,18 +1,18 @@
-import matter from "gray-matter";
+import fm from "front-matter";
 
-// Webpack magic to get all Markdown files
-const req = require.context("../../content", true, /\.md$/);
+// Load raw Markdown text using raw-loader
+const req = require.context("!!raw-loader!../../content", true, /\.md$/);
 
 const getProducts = () => {
   return req.keys().map((filename) => {
-    const file = req(filename);
+    const fileContent = req(filename).default;
+    const { attributes } = fm(fileContent);
     const slug = filename.split("/").pop().replace(".md", "");
 
-    const { data } = matter(file.default);
     return {
-      ...data,
+      ...attributes,
       slug,
-      images: data.images || [],
+      images: attributes.images || [],
     };
   });
 };
