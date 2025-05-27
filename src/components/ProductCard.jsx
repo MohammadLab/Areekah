@@ -1,14 +1,13 @@
 import { useState } from "react";
 
-export default function ProductCard({ item, index }) {
+export default function ProductCard({ item }) {
   const [zoom, setZoom] = useState(false);
   const media = item.media || [];
-  const isEven = index % 2 === 0;
 
   const renderMedia = () => {
     return (
       <div
-        className="flex gap-2 cursor-zoom-in w-full md:w-auto"
+        className="flex flex-col gap-2 cursor-zoom-in w-full md:w-auto"
         onClick={() => setZoom(true)}
       >
         {media.slice(0, 3).map((mediaFile, i) => {
@@ -36,18 +35,16 @@ export default function ProductCard({ item, index }) {
   return (
     <>
       <div
-        className={`flex flex-col md:flex-row items-center gap-8 p-4 rounded shadow ${
-          isEven ? "bg-white" : "bg-gray-100"
-        }`}
+        className="flex flex-col md:flex-row items-center gap-8 p-4 rounded shadow bg-white"
       >
-        {isEven && renderMedia()}
-
+        {/* Always render text first */}
         <div className="flex-1 text-left space-y-2">
           <h3 className="text-3xl font-bold">{item.title}</h3>
           <p className="text-lg text-gray-700">{item.description}</p>
         </div>
 
-        {!isEven && renderMedia()}
+        {/* Always render media on the right */}
+        {renderMedia()}
       </div>
 
       {zoom && (
