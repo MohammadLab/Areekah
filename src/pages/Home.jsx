@@ -43,7 +43,6 @@ export default function Home() {
 
       <div className="p-6 space-y-8 max-w-4xl mx-auto">
         {categories.map((category, i) => {
-          // Find first product of this category
           const firstProduct = allProducts.find((p) => p.category === category.slug);
           const thumbnail = firstProduct?.images?.[0] || "/images/placeholder.jpg";
 
@@ -67,6 +66,16 @@ export default function Home() {
             </div>
           );
         })}
+
+        {/* Thin orange "All Products" button */}
+        <div className="text-center mt-8">
+          <Link
+            to="/all-products"
+            className="inline-block px-4 py-1 border border-orange-500 text-orange-500 rounded-full text-sm hover:bg-orange-500 hover:text-white transition"
+          >
+            View All Products
+          </Link>
+        </div>
       </div>
     </div>
   );
