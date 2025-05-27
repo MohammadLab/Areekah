@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import getProducts from "../utils/getProducts";
 
 const categories = [
   {
@@ -29,30 +30,43 @@ const categories = [
 ];
 
 export default function Home() {
+  const allProducts = getProducts();
+
   return (
     <div className="font-arabic">
       <div className="hero-pattern py-16 px-6 text-center">
         <h1 className="text-4xl font-bold mb-4">Welcome to Areekah Furniture</h1>
         <p className="text-lg max-w-xl mx-auto">
-          Explore our unique range of Syrian furniture and find the perfect addition to your space.
+          Explore our unique range of Syrian-inspired furniture and find the perfect addition to your space.
         </p>
       </div>
 
       <div className="p-6 space-y-8 max-w-4xl mx-auto">
-        {categories.map((category, i) => (
-          <div key={i} className="card flex flex-col md:flex-row items-center gap-4">
-            <div className="flex-1 text-left">
-              <h2 className="text-2xl font-semibold capitalize mb-1">{category.name}</h2>
-              <p className="text-sm text-gray-700 mb-2">{category.description}</p>
-              <Link
-                to={`/category/${category.slug}`}
-                className="inline-block mt-2 px-4 py-2 bg-copper text-white rounded-full text-sm hover:bg-amber-800 transition"
-              >
-                View {category.name}
-              </Link>
+        {categories.map((category, i) => {
+          // Find first product of this category
+          const firstProduct = allProducts.find((p) => p.category === category.slug);
+          const thumbnail = firstProduct?.images?.[0] || "/images/placeholder.jpg";
+
+          return (
+            <div key={i} className="card flex flex-col md:flex-row items-center gap-4 bg-white rounded shadow p-4">
+              <img
+                src={thumbnail}
+                alt={category.name}
+                className="w-40 h-40 object-cover rounded-md"
+              />
+              <div className="flex-1 text-left">
+                <h2 className="text-2xl font-semibold capitalize mb-1">{category.name}</h2>
+                <p className="text-sm text-gray-700 mb-2">{category.description}</p>
+                <Link
+                  to={`/category/${category.slug}`}
+                  className="inline-block mt-2 px-4 py-2 bg-copper text-white rounded-full text-sm hover:bg-amber-800 transition"
+                >
+                  View {category.name}
+                </Link>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
