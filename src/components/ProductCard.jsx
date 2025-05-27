@@ -7,7 +7,10 @@ export default function ProductCard({ item, index }) {
 
   const renderMedia = () => {
     return (
-      <div className="flex gap-2 cursor-zoom-in w-full md:w-auto" onClick={() => setZoom(true)}>
+      <div
+        className="flex gap-2 cursor-zoom-in w-full md:w-auto"
+        onClick={() => setZoom(true)}
+      >
         {media.slice(0, 3).map((mediaFile, i) => {
           const isVideo = mediaFile.endsWith(".mp4");
           return isVideo ? (
@@ -35,13 +38,16 @@ export default function ProductCard({ item, index }) {
       <div
         className={`flex flex-col md:flex-row items-center gap-8 p-4 rounded shadow ${
           isEven ? "bg-white" : "bg-gray-100"
-        } ${isEven ? "" : "md:flex-row-reverse"}`}
+        }`}
       >
-        {renderMedia()}
+        {isEven && renderMedia()}
+
         <div className="flex-1 text-left space-y-2">
           <h3 className="text-3xl font-bold">{item.title}</h3>
           <p className="text-lg text-gray-700">{item.description}</p>
         </div>
+
+        {!isEven && renderMedia()}
       </div>
 
       {zoom && (
