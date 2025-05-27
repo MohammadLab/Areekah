@@ -8,7 +8,6 @@ const categories = [
   { name: "Sets", slug: "sets", description: "Complete sets for your living space, offering cohesive style and functionality." },
   { name: "Tables", slug: "tables", description: "Unique Syrian-inspired tables to enrich your home decor." },
   { name: "Changing Screen", slug: "changing_screen", description: "Traditional wooden screens with intricate Syrian designs, perfect for partitioning or decorating." },
-  { name: "Swings", slug: "swings", description: "Relax in style with our elegant Syrian-inspired swings, perfect for indoor and outdoor spaces." },
 ];
 
 const slides = [
