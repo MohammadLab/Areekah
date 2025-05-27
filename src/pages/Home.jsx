@@ -34,7 +34,7 @@ export default function Home() {
       <div className="hero-pattern py-16 px-6 text-center">
         <h1 className="text-4xl font-bold mb-4">Welcome to Areekah Furniture</h1>
         <p className="text-lg max-w-xl mx-auto">
-          Explore our unique range of Syrian-inspired furniture and find the perfect addition to your space.
+          Explore our unique range of Syrian furniture and find the perfect addition to your space.
         </p>
       </div>
 
