@@ -4,25 +4,68 @@ export default function ProductCard({ item, index }) {
   const [zoom, setZoom] = useState(false);
   const images = item.images || [];
   const isEven = index % 2 === 0;
-  const bgColor = isEven ? "bg-white" : "bg-gray-100";
 
-  return (
-    <>
-      <div
-        className={`flex flex-col md:flex-row items-center gap-8 p-4 rounded shadow ${bgColor} ${
-          isEven ? "" : "md:flex-row-reverse"
-        }`}
-      >
-        <div
-          className="flex-shrink-0 w-72 h-72 overflow-hidden rounded cursor-zoom-in"
-          onClick={() => setZoom(true)}
-        >
+  const renderImages = () => {
+    if (images.length === 1) {
+      return (
+        <div className="w-72 h-72 overflow-hidden rounded cursor-zoom-in" onClick={() => setZoom(true)}>
           <img
-            src={images[0] || "/images/placeholder.jpg"}
+            src={images[0]}
             alt={item.title}
             className="w-full h-full object-cover rounded"
           />
         </div>
+      );
+    }
+
+    if (images.length === 2) {
+      return (
+        <div className="relative w-72 h-72 cursor-zoom-in" onClick={() => setZoom(true)}>
+          <img
+            src={images[0]}
+            alt={item.title}
+            className="w-full h-full object-cover rounded"
+          />
+          <img
+            src={images[1]}
+            alt={item.title}
+            className="absolute bottom-0 right-0 w-1/2 h-1/2 object-cover rounded border border-white"
+          />
+        </div>
+      );
+    }
+
+    if (images.length >= 3) {
+      return (
+        <div className="relative w-72 h-72 cursor-zoom-in" onClick={() => setZoom(true)}>
+          <img
+            src={images[0]}
+            alt={item.title}
+            className="w-full h-full object-cover rounded"
+          />
+          <img
+            src={images[1]}
+            alt={item.title}
+            className="absolute bottom-0 right-0 w-1/2 h-1/2 object-cover rounded border border-white"
+          />
+          <img
+            src={images[2]}
+            alt={item.title}
+            className="absolute top-0 right-0 w-1/2 h-1/2 object-cover rounded border border-white"
+          />
+        </div>
+      );
+    }
+  };
+
+  return (
+    <>
+      <div
+        className={`flex flex-col md:flex-row items-center gap-8 p-4 rounded shadow ${
+          isEven ? "bg-white" : "bg-gray-100"
+        } ${isEven ? "" : "md:flex-row-reverse"}`}
+      >
+        {renderImages()}
         <div className="flex-1 text-left space-y-2">
           <h3 className="text-3xl font-bold">{item.title}</h3>
           <p className="text-lg text-gray-700">{item.description}</p>
