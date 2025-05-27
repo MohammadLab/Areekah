@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 export default function ProductCard({ item, index }) {
-  const [zoom, setZoom] = useState(false);
   const [quickView, setQuickView] = useState(false);
   const images = item.images || [];
   const isEven = index % 2 === 0;
@@ -84,29 +83,24 @@ export default function ProductCard({ item, index }) {
           isEven ? "bg-white" : "bg-gray-100"
         } ${isEven ? "" : "md:flex-row-reverse"}`}
       >
-        <div
-          className="cursor-zoom-in"
-          onClick={() => setZoom(true)}
-        >
-          {renderImages()}
-        </div>
+        {renderImages()}
         <div className="flex-1 text-left space-y-2">
           <h3 className="text-3xl font-bold">{item.title}</h3>
           <p className="text-lg text-gray-700">{item.description}</p>
         </div>
       </div>
 
-      {zoom && (
+      {quickView && (
         <div
           className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
-          onClick={() => setZoom(false)}
+          onClick={() => setQuickView(false)}
         >
           <div
             className="bg-white p-4 rounded shadow-lg max-w-4xl w-full relative"
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              onClick={() => setZoom(false)}
+              onClick={() => setQuickView(false)}
               className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-2xl"
             >
               &times;
@@ -123,32 +117,6 @@ export default function ProductCard({ item, index }) {
             </div>
             <h3 className="text-3xl font-bold mb-2">{item.title}</h3>
             <p className="text-lg text-gray-700">{item.description}</p>
-          </div>
-        </div>
-      )}
-
-      {quickView && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
-          onClick={() => setQuickView(false)}
-        >
-          <div
-            className="bg-white p-4 rounded shadow-lg max-w-md w-full relative"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setQuickView(false)}
-              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-2xl"
-            >
-              &times;
-            </button>
-            <img
-              src={images[0]}
-              alt={item.title}
-              className="w-full h-64 object-contain rounded mb-4"
-            />
-            <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-            <p className="text-gray-700">{item.description}</p>
           </div>
         </div>
       )}
