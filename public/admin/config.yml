@@ -15,7 +15,7 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Category", name: "category", widget: "hidden", default: "sofas"}
       - {label: "Description", name: "description", widget: "text"}
-      - {label: "Media", name: "media", widget: "list", field: {label: "File", name: "file", widget: "file"}}
+      - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}
 
   - name: "seats"
     label: "Seats"
@@ -26,7 +26,7 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Category", name: "category", widget: "hidden", default: "seats"}
       - {label: "Description", name: "description", widget: "text"}
-      - {label: "Media", name: "media", widget: "list", field: {label: "File", name: "file", widget: "file"}}
+      - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}
 
   - name: "sets"
     label: "Sets"
@@ -37,7 +37,7 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Category", name: "category", widget: "hidden", default: "sets"}
       - {label: "Description", name: "description", widget: "text"}
-      - {label: "Media", name: "media", widget: "list", field: {label: "File", name: "file", widget: "file"}}
+      - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}
 
   - name: "tables"
     label: "Tables"
@@ -48,7 +48,7 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Category", name: "category", widget: "hidden", default: "tables"}
       - {label: "Description", name: "description", widget: "text"}
-      - {label: "Media", name: "media", widget: "list", field: {label: "File", name: "file", widget: "file"}}
+      - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}
 
   - name: "changing_screen"
     label: "Changing Screen"
@@ -59,15 +59,4 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Category", name: "category", widget: "hidden", default: "changing_screen"}
       - {label: "Description", name: "description", widget: "text"}
-      - {label: "Media", name: "media", widget: "list", field: {label: "File", name: "file", widget: "file"}}
-
-  - name: "swings"
-    label: "Swings"
-    folder: "content/swings"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Category", name: "category", widget: "hidden", default: "swings"}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: "Media", name: "media", widget: "list", field: {label: "File", name: "file", widget: "file"}}
+      - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}
