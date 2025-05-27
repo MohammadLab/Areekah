@@ -1,14 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const categories = [
-  { name: "Sofas", slug: "sofas" },
-  { name: "Seats", slug: "seats" },
-  { name: "Sets", slug: "sets" },
-  { name: "Tables", slug: "tables" },
-  { name: "Changing Screen", slug: "changing_screen" },
-];
-
 export default function Header() {
   const [showMenu, setShowMenu] = useState(false);
 
@@ -28,21 +20,100 @@ export default function Header() {
           onMouseLeave={() => setShowMenu(false)}
         >
           <button className="px-4 py-2 border border-orange-500 text-orange-500 rounded-full text-sm hover:bg-orange-500 hover:text-white transition">
-            Categories
+            Explore
           </button>
 
           {showMenu && (
-            <div className="absolute left-0 mt-2 w-[600px] bg-white border border-gray-200 rounded shadow-lg p-6 grid grid-cols-2 gap-4 z-50">
-              {categories.map((cat, i) => (
-                <Link
-                  key={i}
-                  to={`/category/${cat.slug}`}
-                  className="text-gray-800 hover:text-copper font-medium transition"
-                  onClick={() => setShowMenu(false)}
-                >
-                  {cat.name}
-                </Link>
-              ))}
+            <div className="absolute left-0 mt-2 w-[700px] bg-white border border-gray-200 rounded shadow-lg p-6 grid grid-cols-3 gap-4 z-50">
+              <div>
+                <h4 className="text-lg font-semibold mb-2">Seating</h4>
+                <ul className="space-y-1">
+                  <li>
+                    <Link
+                      to="/category/sofas"
+                      className="hover:text-copper transition"
+                      onClick={() => setShowMenu(false)}
+                    >
+                      Sofas
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/category/seats"
+                      className="hover:text-copper transition"
+                      onClick={() => setShowMenu(false)}
+                    >
+                      Seats
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/category/sets"
+                      className="hover:text-copper transition"
+                      onClick={() => setShowMenu(false)}
+                    >
+                      Sets
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-lg font-semibold mb-2">Tables & Screens</h4>
+                <ul className="space-y-1">
+                  <li>
+                    <Link
+                      to="/category/tables"
+                      className="hover:text-copper transition"
+                      onClick={() => setShowMenu(false)}
+                    >
+                      Tables
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/category/changing_screen"
+                      className="hover:text-copper transition"
+                      onClick={() => setShowMenu(false)}
+                    >
+                      Changing Screens
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-lg font-semibold mb-2">More</h4>
+                <ul className="space-y-1">
+                  <li>
+                    <Link
+                      to="/about"
+                      className="hover:text-copper transition"
+                      onClick={() => setShowMenu(false)}
+                    >
+                      About Us
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/contact"
+                      className="hover:text-copper transition"
+                      onClick={() => setShowMenu(false)}
+                    >
+                      Contact
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/terms"
+                      className="hover:text-copper transition"
+                      onClick={() => setShowMenu(false)}
+                    >
+                      Terms & Privacy
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </div>
           )}
         </div>
