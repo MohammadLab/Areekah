@@ -6,9 +6,32 @@ export default function ProductCard({ item, index }) {
   const isEven = index % 2 === 0;
 
   const renderImages = () => {
+    const isOdd = index % 2 !== 0;
+    const sideImages = (
+      <div className="flex flex-col gap-2 w-1/2">
+        {images[1] && (
+          <img
+            src={images[1]}
+            alt={item.title}
+            className="h-1/2 object-cover rounded"
+          />
+        )}
+        {images[2] && (
+          <img
+            src={images[2]}
+            alt={item.title}
+            className="h-1/2 object-cover rounded"
+          />
+        )}
+      </div>
+    );
+
     if (images.length === 1) {
       return (
-        <div className="w-72 h-72 overflow-hidden rounded cursor-zoom-in" onClick={() => setZoom(true)}>
+        <div
+          className="w-72 h-72 overflow-hidden rounded cursor-zoom-in"
+          onClick={() => setZoom(true)}
+        >
           <img
             src={images[0]}
             alt={item.title}
@@ -18,46 +41,33 @@ export default function ProductCard({ item, index }) {
       );
     }
 
-    if (images.length === 2) {
-      return (
-        <div className="flex gap-2 cursor-zoom-in" onClick={() => setZoom(true)}>
-          <img
-            src={images[0]}
-            alt={item.title}
-            className="w-1/2 h-72 object-cover rounded"
-          />
-          <img
-            src={images[1]}
-            alt={item.title}
-            className="w-1/2 h-72 object-cover rounded"
-          />
-        </div>
-      );
-    }
-
-    if (images.length >= 3) {
-      return (
-        <div className="flex gap-2 cursor-zoom-in" onClick={() => setZoom(true)}>
-          <img
-            src={images[0]}
-            alt={item.title}
-            className="w-1/2 h-72 object-cover rounded"
-          />
-          <div className="flex flex-col gap-2 w-1/2">
+    return (
+      <div
+        className="flex gap-2 cursor-zoom-in w-full md:w-auto"
+        onClick={() => setZoom(true)}
+      >
+        {!isOdd && (
+          <>
             <img
-              src={images[1]}
+              src={images[0]}
               alt={item.title}
-              className="h-1/2 object-cover rounded flex-1"
+              className="w-1/2 h-72 object-cover rounded"
             />
+            {sideImages}
+          </>
+        )}
+        {isOdd && (
+          <>
+            {sideImages}
             <img
-              src={images[2]}
+              src={images[0]}
               alt={item.title}
-              className="h-1/2 object-cover rounded flex-1"
+              className="w-1/2 h-72 object-cover rounded"
             />
-          </div>
-        </div>
-      );
-    }
+          </>
+        )}
+      </div>
+    );
   };
 
   return (
@@ -65,7 +75,7 @@ export default function ProductCard({ item, index }) {
       <div
         className={`flex flex-col md:flex-row items-center gap-8 p-4 rounded shadow ${
           isEven ? "bg-white" : "bg-gray-100"
-        } ${isEven ? "" : "md:flex-row-reverse"}`}
+        }`}
       >
         {renderImages()}
         <div className="flex-1 text-left space-y-2">
