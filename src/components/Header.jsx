@@ -31,7 +31,7 @@ export default function Header() {
         </button>
 
         {dropdownOpen && (
-          <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded shadow">
+          <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded shadow z-50">
             {categories.map((cat, i) => (
               <Link
                 key={i}
