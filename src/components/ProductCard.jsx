@@ -32,7 +32,7 @@ export default function ProductCard({ item, index }) {
           <img
             src={images[1]}
             alt={item.title}
-            className="absolute bottom-0 right-0 w-1/2 h-1/2 object-cover rounded border border-white"
+            className="absolute bottom-0 right-0 w-36 h-36 object-cover rounded border border-white"
           />
         </div>
       );
@@ -49,24 +49,24 @@ export default function ProductCard({ item, index }) {
           <img
             src={images[1]}
             alt={item.title}
-            className="absolute bottom-0 right-0 w-1/2 h-1/2 object-cover rounded border border-white"
+            className="absolute bottom-0 right-0 w-36 h-36 object-cover rounded border border-white"
           />
           <img
             src={images[2]}
             alt={item.title}
-            className="absolute top-0 right-0 w-1/2 h-1/2 object-cover rounded border border-white"
+            className="absolute top-0 right-0 w-36 h-36 object-cover rounded border border-white"
           />
         </div>
       );
     }
   };
 
+
   return (
     <>
       <div
-        className={`flex flex-col md:flex-row items-center gap-8 p-4 rounded shadow ${
-          isEven ? "bg-white" : "bg-gray-100"
-        } ${isEven ? "" : "md:flex-row-reverse"}`}
+        className={`flex flex-col md:flex-row items-center gap-8 p-4 rounded shadow ${isEven ? "bg-white" : "bg-gray-100"
+          } ${isEven ? "" : "md:flex-row-reverse"}`}
       >
         {renderImages()}
         <div className="flex-1 text-left space-y-2">
