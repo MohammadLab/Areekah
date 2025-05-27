@@ -7,6 +7,7 @@ export default function Header() {
   return (
     <header className="bg-white shadow relative z-50 font-arabic">
       <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+        {/* Logo / Home */}
         <Link
           to="/"
           className="text-2xl font-bold text-copper hover:text-amber-800 transition"
@@ -14,6 +15,35 @@ export default function Header() {
           Areekah
         </Link>
 
+        {/* Navigation Tabs */}
+        <nav className="flex gap-6 text-gray-700 text-sm font-medium">
+          <Link
+            to="/"
+            className="hover:text-copper transition"
+          >
+            Home
+          </Link>
+          <Link
+            to="/about"
+            className="hover:text-copper transition"
+          >
+            About
+          </Link>
+          <Link
+            to="/contact"
+            className="hover:text-copper transition"
+          >
+            Contact
+          </Link>
+          <Link
+            to="/terms"
+            className="hover:text-copper transition"
+          >
+            Terms & Privacy
+          </Link>
+        </nav>
+
+        {/* Explore / Mega Menu */}
         <div
           className="relative"
           onMouseEnter={() => setShowMenu(true)}
