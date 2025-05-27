@@ -17,13 +17,46 @@ collections:
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}
 
-  - name: "stands"
-    label: "Stands"
-    folder: "content/stands"
+  - name: "seats"
+    label: "Seats"
+    folder: "content/seats"
     create: true
     slug: "{{slug}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Category", name: "category", widget: "hidden", default: "stands"}
+      - {label: "Category", name: "category", widget: "hidden", default: "seats"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}
+
+  - name: "sets"
+    label: "Sets"
+    folder: "content/sets"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Category", name: "category", widget: "hidden", default: "sets"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}
+
+  - name: "tables"
+    label: "Tables"
+    folder: "content/tables"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Category", name: "category", widget: "hidden", default: "tables"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}
+
+  - name: "changing_screen"
+    label: "Changing Screen"
+    folder: "content/changing_screen"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Category", name: "category", widget: "hidden", default: "changing_screen"}
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}
