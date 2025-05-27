@@ -7,44 +7,46 @@ const categories = [
   { name: "Sets", slug: "sets" },
   { name: "Tables", slug: "tables" },
   { name: "Changing Screen", slug: "changing_screen" },
-  { name: "Swings", slug: "swings" },
 ];
 
 export default function Header() {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <div className="bg-white shadow p-4 flex justify-center items-center gap-8 font-arabic">
-      <Link
-        to="/"
-        className="text-2xl font-bold text-copper hover:text-amber-800 transition"
-      >
-        Areekah
-      </Link>
-
-      <div className="relative">
-        <button
-          onClick={() => setDropdownOpen(!dropdownOpen)}
-          className="px-4 py-1 border border-orange-500 text-orange-500 rounded-full text-sm hover:bg-orange-500 hover:text-white transition"
+    <header className="bg-white shadow relative z-50 font-arabic">
+      <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+        <Link
+          to="/"
+          className="text-2xl font-bold text-copper hover:text-amber-800 transition"
         >
-          Categories
-        </button>
+          Areekah
+        </Link>
 
-        {dropdownOpen && (
-          <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded shadow z-50">
-            {categories.map((cat, i) => (
-              <Link
-                key={i}
-                to={`/category/${cat.slug}`}
-                className="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition"
-                onClick={() => setDropdownOpen(false)}
-              >
-                {cat.name}
-              </Link>
-            ))}
-          </div>
-        )}
+        <div
+          className="relative"
+          onMouseEnter={() => setShowMenu(true)}
+          onMouseLeave={() => setShowMenu(false)}
+        >
+          <button className="px-4 py-2 border border-orange-500 text-orange-500 rounded-full text-sm hover:bg-orange-500 hover:text-white transition">
+            Categories
+          </button>
+
+          {showMenu && (
+            <div className="absolute left-0 mt-2 w-[600px] bg-white border border-gray-200 rounded shadow-lg p-6 grid grid-cols-2 gap-4 z-50">
+              {categories.map((cat, i) => (
+                <Link
+                  key={i}
+                  to={`/category/${cat.slug}`}
+                  className="text-gray-800 hover:text-copper font-medium transition"
+                  onClick={() => setShowMenu(false)}
+                >
+                  {cat.name}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </header>
   );
 }
