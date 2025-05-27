@@ -2,76 +2,42 @@ import { useState } from "react";
 
 export default function ProductCard({ item, index }) {
   const [zoom, setZoom] = useState(false);
-  const images = item.images || [];
+  const media = item.media || [];
   const isEven = index % 2 === 0;
 
-  const renderImages = () => {
-    if (images.length === 1) {
-      return (
-        <div
-          className="w-72 h-72 overflow-hidden rounded cursor-zoom-in"
-          onClick={() => setZoom(true)}
-        >
-          <img
-            src={images[0]}
-            alt={item.title}
-            className="w-full h-full object-cover rounded"
-          />
-        </div>
-      );
-    }
-
-    if (images.length === 2) {
-      return (
-        <div className="flex gap-2 cursor-zoom-in" onClick={() => setZoom(true)}>
-          <img
-            src={images[0]}
-            alt={item.title}
-            className="w-72 h-72 object-cover rounded"
-          />
-          <img
-            src={images[1]}
-            alt={item.title}
-            className="w-36 h-36 object-cover rounded"
-          />
-        </div>
-      );
-    }
-
-    if (images.length >= 3) {
-      return (
-        <div className="flex gap-2 cursor-zoom-in" onClick={() => setZoom(true)}>
-          <img
-            src={images[0]}
-            alt={item.title}
-            className="w-72 h-72 object-cover rounded"
-          />
-          <div className="flex flex-col gap-2">
-            <img
-              src={images[1]}
-              alt={item.title}
-              className="w-36 h-36 object-cover rounded"
+  const renderMedia = () => {
+    return (
+      <div className="flex gap-2 cursor-zoom-in w-full md:w-auto" onClick={() => setZoom(true)}>
+        {media.slice(0, 3).map((mediaFile, i) => {
+          const isVideo = mediaFile.endsWith(".mp4");
+          return isVideo ? (
+            <video
+              key={i}
+              src={mediaFile}
+              controls
+              className="w-72 h-72 object-cover rounded"
             />
+          ) : (
             <img
-              src={images[2]}
+              key={i}
+              src={mediaFile}
               alt={item.title}
-              className="w-36 h-36 object-cover rounded"
+              className="w-72 h-72 object-cover rounded"
             />
-          </div>
-        </div>
-      );
-    }
+          );
+        })}
+      </div>
+    );
   };
-
-
 
   return (
     <>
       <div
-        className={`flex flex-col md:flex-row items-center gap-8 p-4 rounded shadow ${isEven ? "bg-white" : "bg-gray-100"
-          } ${isEven ? "" : "md:flex-row-reverse"}`}
+        className={`flex flex-col md:flex-row items-center gap-8 p-4 rounded shadow ${
+          isEven ? "bg-white" : "bg-gray-100"
+        } ${isEven ? "" : "md:flex-row-reverse"}`}
       >
-        {renderImages()}
+        {renderMedia()}
         <div className="flex-1 text-left space-y-2">
           <h3 className="text-3xl font-bold">{item.title}</h3>
           <p className="text-lg text-gray-700">{item.description}</p>
@@ -94,14 +60,24 @@ export default function ProductCard({ item, index }) {
               &times;
             </button>
             <div className="flex overflow-x-auto space-x-2 mb-4">
-              {images.map((img, i) => (
-                <img
-                  key={i}
-                  src={img}
-                  className="h-[36rem] object-contain rounded"
-                  alt={item.title}
-                />
-              ))}
+              {media.map((mediaFile, i) => {
+                const isVideo = mediaFile.endsWith(".mp4");
+                return isVideo ? (
+                  <video
+                    key={i}
+                    src={mediaFile}
+                    controls
+                    className="h-[36rem] object-contain rounded"
+                  />
+                ) : (
+                  <img
+                    key={i}
+                    src={mediaFile}
+                    className="h-[36rem] object-contain rounded"
+                    alt={item.title}
+                  />
+                );
+              })}
             </div>
             <h3 className="text-3xl font-bold mb-2">{item.title}</h3>
             <p className="text-lg text-gray-700">{item.description}</p>
