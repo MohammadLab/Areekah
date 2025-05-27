@@ -24,7 +24,7 @@ export default function Header() {
           </button>
 
           {showMenu && (
-            <div className="absolute left-0 mt-2 w-[700px] bg-white border border-gray-200 rounded shadow-lg p-6 grid grid-cols-3 gap-4 z-50">
+            <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-[700px] bg-white border border-gray-200 rounded shadow-lg p-6 grid grid-cols-3 gap-4 z-50">
               <div>
                 <h4 className="text-lg font-semibold mb-2">Seating</h4>
                 <ul className="space-y-1">
