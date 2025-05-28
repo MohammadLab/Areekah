@@ -6,6 +6,7 @@ import About from "./pages/About";
 import Header from "./components/Header";
 import Contact from "./pages/Contact";
 import Terms from "./pages/Terms";
+import Product from "./pages/Product";
 
 
 export default function App() {
@@ -19,7 +20,7 @@ export default function App() {
         <Route path="/about" element={<About />} /> {/* New About page route */}
         <Route path="/contact" element={<Contact />} />
         <Route path="/terms" element={<Terms />} />
-
+        <Route path="/product/:slug" element={<Product />} />
       </Routes>
     </Router>
   );
