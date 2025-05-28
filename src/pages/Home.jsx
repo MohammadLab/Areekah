@@ -28,9 +28,21 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="font-arabic">
+    <div className="relative font-arabic overflow-hidden">
+      {/* Arabic Hero Pattern at the top */}
+      <div
+        className="h-24 bg-repeat-x bg-top"
+        style={{
+          backgroundImage: "url('/images/arabic-pattern.svg')", // Use your actual pattern URL here
+        }}
+      ></div>
+
+      {/* Vertical decorative gradient bars */}
+      <div className="fixed top-0 left-0 h-full w-8 bg-gradient-to-b from-orange-200 via-white to-orange-200 opacity-50 z-10"></div>
+      <div className="fixed top-0 right-0 h-full w-8 bg-gradient-to-b from-orange-200 via-white to-orange-200 opacity-50 z-10"></div>
+
       {/* Slideshow */}
-      <div className="relative h-96 overflow-hidden">
+      <div className="relative h-96 overflow-hidden z-20">
         {slides.map((slide, i) => (
           <img
             key={i}
@@ -42,13 +54,13 @@ export default function Home() {
       </div>
 
       {/* Small description */}
-      <div className="text-center my-8 max-w-2xl mx-auto px-4">
+      <div className="text-center my-8 max-w-2xl mx-auto px-4 z-20 relative">
         <h1 className="text-4xl font-bold mb-2">Areekah Furniture</h1>
         <p className="text-gray-700">Experience the essence of Syrian craftsmanship with our authentic and stylish furniture collection, blending tradition and modern design.</p>
       </div>
 
       {/* All Products button */}
-      <div className="text-center mb-8">
+      <div className="text-center mb-8 z-20 relative">
         <Link
           to="/all-products"
           className="inline-block px-4 py-1 border border-orange-500 text-orange-500 rounded-full text-sm hover:bg-orange-500 hover:text-white transition"
@@ -58,7 +70,7 @@ export default function Home() {
       </div>
 
       {/* Categories */}
-      <div className="p-6 space-y-8 max-w-4xl mx-auto">
+      <div className="p-6 space-y-8 max-w-4xl mx-auto z-20 relative">
         {categories.map((category, i) => {
           const firstProduct = allProducts.find((p) => p.category === category.slug);
           const thumbnail = firstProduct?.images?.[0] || "/images/placeholder.jpg";
