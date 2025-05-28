@@ -42,7 +42,7 @@ export default function Home() {
       <div className="fixed top-0 right-0 h-full w-8 bg-gradient-to-b from-orange-200 via-white to-orange-200 opacity-50 z-10"></div>
 
       {/* Slideshow */}
-      <div className="relative h-96 overflow-hidden z-20">
+      <div className="relative h-96 overflow-hidden z-20 mt-0">
         {slides.map((slide, i) => (
           <img
             key={i}
