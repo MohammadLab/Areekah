@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FilterSidebar from "../components/FilterSidebar";
-import { products } from "../data/products";
+import getProducts from "../utils/getProducts";
 
 export default function AllProducts() {
+  const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
-  // Flatten all products into one array for simplicity
-  const allProducts = Object.values(products).flat();
+  useEffect(() => {
+    const realProducts = getProducts();
+    setProducts(realProducts);
+    setFilteredProducts(realProducts);
+  }, []);
 
   const handleFilterChange = ({ category, price }) => {
-    let filtered = [...allProducts];
+    let filtered = [...products];
 
     if (category) {
       filtered = filtered.filter((p) => p.category === category);
@@ -19,9 +23,7 @@ export default function AllProducts() {
       const [min, max] = price.includes("+")
         ? [500, Infinity]
         : price.split("-").map(Number);
-      filtered = filtered.filter(
-        (p) => p.price >= min && p.price <= max
-      );
+      filtered = filtered.filter((p) => p.price >= min && p.price <= max);
     }
 
     setFilteredProducts(filtered);
@@ -32,17 +34,23 @@ export default function AllProducts() {
       <FilterSidebar onFilterChange={handleFilterChange} />
 
       <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {(filteredProducts.length > 0 ? filteredProducts : allProducts).map((item, index) => (
-          <div key={index} className="border rounded p-4 shadow">
-            <img
-              src={`/images/${item.folder}/1.jpg`}
-              alt={item.name}
-              className="w-full h-48 object-cover mb-2 rounded"
-            />
-            <h3 className="text-lg font-semibold">{item.name}</h3>
-            {item.price && <p className="text-sm text-gray-600">${item.price}</p>}
-          </div>
-        ))}
+        {filteredProducts.length === 0 ? (
+          <p className="text-gray-500">No products match the selected filters.</p>
+        ) : (
+          filteredProducts.map((item, index) => (
+            <div key={index} className="border rounded p-4 shadow">
+              {item.images.length > 0 && (
+                <img
+                  src={item.images[0]}
+                  alt={item.title}
+                  className="w-full h-48 object-cover mb-2 rounded"
+                />
+              )}
+              <h3 className="text-lg font-semibold">{item.title}</h3>
+              {item.price && <p className="text-sm text-gray-600">${item.price}</p>}
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
