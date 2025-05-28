@@ -4,6 +4,9 @@ import ProductCategory from "./pages/ProductCategory";
 import AllProducts from "./pages/AllProducts";
 import About from "./pages/About";
 import Header from "./components/Header";
+import Contact from "./pages/Contact";
+import Terms from "./pages/Terms";
+
 
 export default function App() {
   return (
@@ -14,6 +17,9 @@ export default function App() {
         <Route path="/category/:type" element={<ProductCategory />} />
         <Route path="/all-products" element={<AllProducts />} />
         <Route path="/about" element={<About />} /> {/* New About page route */}
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/terms" element={<Terms />} />
+
       </Routes>
     </Router>
   );
