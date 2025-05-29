@@ -84,10 +84,14 @@ export default function ProductCard({ item, index }) {
         } ${isEven ? "" : "md:flex-row-reverse"}`}
       >
         {renderImages()}
-        <div className="flex-1 text-left space-y-2">
+        {/* Link to product page using Product ID */}
+        <a
+          href={`/product/${item.id}`}
+          className="flex-1 text-left space-y-2 block"
+        >
           <h3 className="text-3xl font-bold">{item.title}</h3>
           <p className="text-lg text-gray-700">{item.description}</p>
-        </div>
+        </a>
       </div>
 
       {quickView && (

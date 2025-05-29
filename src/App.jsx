@@ -20,8 +20,9 @@ export default function App() {
         <Route path="/about" element={<About />} /> {/* New About page route */}
         <Route path="/contact" element={<Contact />} />
         <Route path="/terms" element={<Terms />} />
-        <Route path="/product/:slug" element={<Product />} />
+        <Route path="/product/:id" element={<Product />} />
       </Routes>
     </Router>
   );
 }
+s
