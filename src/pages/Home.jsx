@@ -11,12 +11,12 @@ const categories = [
 ];
 
 export default function Home() {
-  const allProducts = getProducts().slice(0, 4); // Highlight 4 featured products
+  const allProducts = getProducts().slice(0, 4); // Display 4 featured products
 
   return (
     <div className="font-arabic text-gray-800">
-      {/* Hero section */}
-      <div className="relative h-96 overflow-hidden">
+      {/* Hero Banner */}
+      <div className="relative h-[70vh] overflow-hidden">
         <img
           src="/images/slider/slide1.jpg"
           alt="Hero"
@@ -25,12 +25,18 @@ export default function Home() {
         <div className="absolute inset-0 bg-black bg-opacity-30 flex flex-col justify-center items-center text-center text-white p-4">
           <h1 className="text-5xl font-bold mb-4">Discover Syrian Craftsmanship</h1>
           <p className="max-w-2xl">
-            Explore our range of authentic, hand-crafted furniture that brings the warmth and beauty of Syria to your home.
+            Experience authentic, hand-crafted furniture that blends tradition with modern elegance.
           </p>
+          <Link
+            to="/all-products"
+            className="mt-4 px-6 py-2 bg-orange-500 text-white font-semibold rounded-full hover:bg-orange-600 transition"
+          >
+            Shop Now
+          </Link>
         </div>
       </div>
 
-      {/* Categories */}
+      {/* Category Highlights */}
       <div className="max-w-6xl mx-auto my-12 px-4 space-y-8">
         <h2 className="text-3xl font-bold text-center">Explore Our Collections</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -43,9 +49,9 @@ export default function Home() {
               <img
                 src={category.image}
                 alt={category.name}
-                className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105"
+                className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-30 flex justify-center items-center text-white font-semibold text-xl">
+              <div className="absolute inset-0 bg-black bg-opacity-30 flex justify-center items-center text-white font-semibold text-xl group-hover:bg-opacity-50 transition">
                 {category.name}
               </div>
             </Link>
@@ -81,10 +87,10 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Showroom Invitation */}
+      {/* Visit Showroom CTA */}
       <div className="bg-orange-500 text-white text-center p-12">
         <h2 className="text-3xl font-bold mb-2">Visit Our Showroom</h2>
-        <p>Experience the timeless beauty of our Syrian-inspired furniture in person.</p>
+        <p>Experience the beauty of Syrian-inspired furniture in person.</p>
         <Link
           to="/contact"
           className="inline-block mt-4 px-6 py-2 bg-white text-orange-500 rounded-full font-semibold hover:bg-gray-100 transition"
