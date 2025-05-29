@@ -29,7 +29,9 @@ export default function Product() {
         </div>
       )}
       <p className="text-lg text-gray-700">{product.description}</p>
-      {product.price && <p className="text-xl font-semibold">${product.price}</p>}
+      {product.price && (
+        <p className="text-xl font-semibold">${product.price}</p>
+      )}
     </div>
   );
 }

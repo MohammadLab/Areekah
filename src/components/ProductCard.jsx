@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function ProductCard({ item, index }) {
   const [quickView, setQuickView] = useState(false);
@@ -85,13 +86,13 @@ export default function ProductCard({ item, index }) {
       >
         {renderImages()}
         {/* Link to product page using Product ID */}
-        <a
-          href={`/product/${item.id}`}
+        <Link
+          to={`/product/${item.id}`}
           className="flex-1 text-left space-y-2 block"
         >
           <h3 className="text-3xl font-bold">{item.title}</h3>
           <p className="text-lg text-gray-700">{item.description}</p>
-        </a>
+        </Link>
       </div>
 
       {quickView && (
