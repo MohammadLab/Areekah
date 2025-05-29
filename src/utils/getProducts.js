@@ -9,8 +9,12 @@ const getProducts = () => {
     const { attributes } = fm(fileContent);
     const slug = filename.split("/").pop().replace(".md", "");
 
+    // Add id from frontmatter
+    const id = attributes.id || slug; // fallback to slug if no id
+
     return {
       ...attributes,
+      id,
       slug,
       images: attributes.images || [],
     };
