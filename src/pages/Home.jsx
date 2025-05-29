@@ -3,82 +3,94 @@ import { Link } from "react-router-dom";
 import getProducts from "../utils/getProducts";
 
 const categories = [
-  { name: "Sofas", slug: "sofas", description: "Discover our range of handcrafted Syrian-style sofas, blending tradition and luxury." },
-  { name: "Seats", slug: "seats", description: "Elegant and comfortable seating options, meticulously crafted to elevate your space." },
-  { name: "Sets", slug: "sets", description: "Complete sets for your living space, offering cohesive style and functionality." },
-  { name: "Tables", slug: "tables", description: "Unique Syrian-inspired tables to enrich your home decor." },
-  { name: "Changing Screen", slug: "changing_screen", description: "Traditional wooden screens with intricate Syrian designs, perfect for partitioning or decorating." },
-];
-
-const slides = [
-  "/images/slider/slide1.jpg",
-  "/images/slider/slide2.jpg",
-  "/images/slider/slide3.jpg",
+  { name: "Sofas", slug: "sofas", image: "/images/category-sofas.jpg" },
+  { name: "Seats", slug: "seats", image: "/images/category-seats.jpg" },
+  { name: "Sets", slug: "sets", image: "/images/category-sets.jpg" },
+  { name: "Tables", slug: "tables", image: "/images/category-tables.jpg" },
+  { name: "Changing Screens", slug: "changing_screen", image: "/images/category-screens.jpg" },
 ];
 
 export default function Home() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const allProducts = getProducts();
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
+  const allProducts = getProducts().slice(0, 4); // Highlight 4 featured products
 
   return (
-    <div className="font-arabic">
-      {/* Slideshow */}
+    <div className="font-arabic text-gray-800">
+      {/* Hero section */}
       <div className="relative h-96 overflow-hidden">
-        {slides.map((slide, i) => (
-          <img
-            key={i}
-            src={slide}
-            alt={`Slide ${i}`}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${i === currentSlide ? "opacity-100" : "opacity-0"}`}
-          />
-        ))}
-      </div>
-
-      {/* Small description */}
-      <div className="text-center my-8 max-w-2xl mx-auto px-4">
-        <h1 className="text-4xl font-bold mb-2">Areekah Furniture</h1>
-        <p className="text-gray-700">Experience the essence of Syrian craftsmanship with our authentic and stylish furniture collection, blending tradition and modern design.</p>
-      </div>
-
-      {/* All Products button */}
-      <div className="text-center mb-8">
-        <Link
-          to="/all-products"
-          className="inline-block px-4 py-1 border border-orange-500 text-orange-500 rounded-full text-sm hover:bg-orange-500 hover:text-white transition"
-        >
-          View All Products
-        </Link>
+        <img
+          src="/images/slider/slide1.jpg"
+          alt="Hero"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-30 flex flex-col justify-center items-center text-center text-white p-4">
+          <h1 className="text-5xl font-bold mb-4">Discover Syrian Craftsmanship</h1>
+          <p className="max-w-2xl">
+            Explore our range of authentic, hand-crafted furniture that brings the warmth and beauty of Syria to your home.
+          </p>
+        </div>
       </div>
 
       {/* Categories */}
-      <div className="p-6 space-y-8 max-w-4xl mx-auto">
-        {categories.map((category, i) => {
-          const firstProduct = allProducts.find((p) => p.category === category.slug);
-          const thumbnail = firstProduct?.images?.[0] || "/images/placeholder.jpg";
-
-          return (
-            <div key={i} className="card flex flex-col md:flex-row items-center gap-4 bg-white rounded shadow p-4">
-              <img src={thumbnail} alt={category.name} className="w-40 h-40 object-cover rounded-md" />
-              <div className="flex-1 text-left">
-                <h2 className="text-2xl font-semibold capitalize mb-1">{category.name}</h2>
-                <p className="text-sm text-gray-700 mb-2">{category.description}</p>
-                <Link
-                  to={`/category/${category.slug}`}
-                  className="inline-block mt-2 px-4 py-2 bg-copper text-white rounded-full text-sm hover:bg-amber-800 transition"
-                >
-                  View {category.name}
-                </Link>
+      <div className="max-w-6xl mx-auto my-12 px-4 space-y-8">
+        <h2 className="text-3xl font-bold text-center">Explore Our Collections</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {categories.map((category, i) => (
+            <Link
+              key={i}
+              to={`/category/${category.slug}`}
+              className="relative group overflow-hidden rounded shadow"
+            >
+              <img
+                src={category.image}
+                alt={category.name}
+                className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-30 flex justify-center items-center text-white font-semibold text-xl">
+                {category.name}
               </div>
-            </div>
-          );
-        })}
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Featured Products */}
+      <div className="max-w-6xl mx-auto my-12 px-4 space-y-8">
+        <h2 className="text-3xl font-bold text-center">Featured Products</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          {allProducts.map((product, i) => (
+            <Link
+              key={i}
+              to={`/product/${product.slug}`}
+              className="group border rounded overflow-hidden shadow hover:shadow-lg transition"
+            >
+              <img
+                src={product.images[0]}
+                alt={product.title}
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-2">
+                <h3 className="text-lg font-semibold group-hover:text-orange-500 transition">
+                  {product.title}
+                </h3>
+                {product.price && (
+                  <p className="text-sm text-gray-600">${product.price}</p>
+                )}
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Showroom Invitation */}
+      <div className="bg-orange-500 text-white text-center p-12">
+        <h2 className="text-3xl font-bold mb-2">Visit Our Showroom</h2>
+        <p>Experience the timeless beauty of our Syrian-inspired furniture in person.</p>
+        <Link
+          to="/contact"
+          className="inline-block mt-4 px-6 py-2 bg-white text-orange-500 rounded-full font-semibold hover:bg-gray-100 transition"
+        >
+          Contact Us
+        </Link>
       </div>
     </div>
   );
