@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import AllProducts from "./pages/AllProducts";
 import About from "./pages/About";
 import Header from "./components/Header";
 import Contact from "./pages/Contact";
@@ -14,7 +13,6 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/all-products" element={<AllProducts />} />
         <Route path="/about" element={<About />} /> {/* New About page route */}
         <Route path="/contact" element={<Contact />} />
         <Route path="/terms" element={<Terms />} />
