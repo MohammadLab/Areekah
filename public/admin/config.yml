@@ -16,6 +16,7 @@ collections:
       - {label: "Category", name: "category", widget: "hidden", default: "sofas"}
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}
+      - {label: "Product ID", name: "id", widget: "string", required: true}
 
   - name: "seats"
     label: "Seats"
@@ -27,6 +28,7 @@ collections:
       - {label: "Category", name: "category", widget: "hidden", default: "seats"}
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}
+      - {label: "Product ID", name: "id", widget: "string", required: true}
 
   - name: "sets"
     label: "Sets"
@@ -38,6 +40,7 @@ collections:
       - {label: "Category", name: "category", widget: "hidden", default: "sets"}
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}
+      - {label: "Product ID", name: "id", widget: "string", required: true}
 
   - name: "tables"
     label: "Tables"
@@ -49,6 +52,7 @@ collections:
       - {label: "Category", name: "category", widget: "hidden", default: "tables"}
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}
+      - {label: "Product ID", name: "id", widget: "string", required: true}
 
   - name: "changing_screen"
     label: "Changing Screen"
@@ -60,3 +64,4 @@ collections:
       - {label: "Category", name: "category", widget: "hidden", default: "changing_screen"}
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}
+      - {label: "Product ID", name: "id", widget: "string", required: true}
