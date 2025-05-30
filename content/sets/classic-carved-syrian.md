@@ -11,4 +11,5 @@ topValue: true
 images:
   - /images/uploads/sets-06.jpg
 id: "0011"
+featured: true
 ---
