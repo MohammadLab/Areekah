@@ -10,12 +10,12 @@ export default function CategoryHighlights() {
   return (
     <div className="max-w-6xl mx-auto my-12 px-4 space-y-8">
       <h2 className="text-3xl font-bold text-center">Explore Our Collections</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
         {categories.map((category, i) => (
           <a
             key={i}
             href={category.link}
-            className="relative group overflow-hidden rounded shadow"
+            className="relative group overflow-hidden rounded shadow w-full max-w-[300px]"
           >
             <img
               src={category.image}
