@@ -11,4 +11,5 @@ topValue: false
 images:
   - /images/uploads/tables-02.jpg
 id: "0015"
+featured: true
 ---
