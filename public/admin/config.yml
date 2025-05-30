@@ -15,6 +15,9 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Category", name: "category", widget: "hidden", default: "sofas"}
       - {label: "Description", name: "description", widget: "text"}
+      - {label: "Price", name: "price", widget: "number"}
+      - {label: "Discount (%)", name: "discount", widget: "number", required: false, default: 0}
+      - {label: "Top Value", name: "topValue", widget: "boolean", required: false, default: false}
       - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}
       - {label: "Product ID", name: "id", widget: "string", required: true}
 
@@ -27,6 +30,9 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Category", name: "category", widget: "hidden", default: "seats"}
       - {label: "Description", name: "description", widget: "text"}
+      - {label: "Price", name: "price", widget: "number"}
+      - {label: "Discount (%)", name: "discount", widget: "number", required: false, default: 0}
+      - {label: "Top Value", name: "topValue", widget: "boolean", required: false, default: false}
       - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}
       - {label: "Product ID", name: "id", widget: "string", required: true}
 
@@ -39,6 +45,9 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Category", name: "category", widget: "hidden", default: "sets"}
       - {label: "Description", name: "description", widget: "text"}
+      - {label: "Price", name: "price", widget: "number"}
+      - {label: "Discount (%)", name: "discount", widget: "number", required: false, default: 0}
+      - {label: "Top Value", name: "topValue", widget: "boolean", required: false, default: false}
       - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}
       - {label: "Product ID", name: "id", widget: "string", required: true}
 
@@ -51,6 +60,9 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Category", name: "category", widget: "hidden", default: "tables"}
       - {label: "Description", name: "description", widget: "text"}
+      - {label: "Price", name: "price", widget: "number"}
+      - {label: "Discount (%)", name: "discount", widget: "number", required: false, default: 0}
+      - {label: "Top Value", name: "topValue", widget: "boolean", required: false, default: false}
       - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}
       - {label: "Product ID", name: "id", widget: "string", required: true}
 
@@ -63,5 +75,8 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Category", name: "category", widget: "hidden", default: "changing_screen"}
       - {label: "Description", name: "description", widget: "text"}
+      - {label: "Price", name: "price", widget: "number"}
+      - {label: "Discount (%)", name: "discount", widget: "number", required: false, default: 0}
+      - {label: "Top Value", name: "topValue", widget: "boolean", required: false, default: false}
       - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}}
       - {label: "Product ID", name: "id", widget: "string", required: true}
