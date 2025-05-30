@@ -1,8 +1,42 @@
+import ProductCard from "./ProductCard";
+
 const featuredProducts = [
-  { title: "Elegant Sofa", image: "/images/category-sofas.jpg", link: "/product/0001" },
-  { title: "Cozy Armchair", image: "/images/category-seats.jpg", link: "/product/0002" },
-  { title: "Wooden Table", image: "/images/category-tables.jpg", link: "/product/0003" },
-  { title: "Decorative Screen", image: "/images/category-screens.jpg", link: "/product/0004" },
+  {
+    id: "0001",
+    title: "Elegant Sofa",
+    description: "Handcrafted Syrian-style sofa with intricate woodwork.",
+    price: 2499,
+    discount: 15,
+    topValue: true,
+    images: ["/images/category-sofas.jpg"]
+  },
+  {
+    id: "0002",
+    title: "Cozy Armchair",
+    description: "Luxurious Syrian-style armchair with plush comfort.",
+    price: 1499,
+    discount: 10,
+    topValue: false,
+    images: ["/images/category-seats.jpg"]
+  },
+  {
+    id: "0003",
+    title: "Wooden Table",
+    description: "Beautiful wooden table with detailed Syrian carvings.",
+    price: 1999,
+    discount: 5,
+    topValue: false,
+    images: ["/images/category-tables.jpg"]
+  },
+  {
+    id: "0004",
+    title: "Decorative Screen",
+    description: "Syrian hand-carved wooden screen, a stunning room divider.",
+    price: 999,
+    discount: 0,
+    topValue: false,
+    images: ["/images/category-screens.jpg"]
+  },
 ];
 
 export default function FeaturedProducts() {
@@ -11,22 +45,7 @@ export default function FeaturedProducts() {
       <h2 className="text-3xl font-bold text-center">Featured Products</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         {featuredProducts.map((product, i) => (
-          <a
-            key={i}
-            href={product.link}
-            className="group border rounded overflow-hidden shadow hover:shadow-lg transition"
-          >
-            <img
-              src={product.image}
-              alt={product.title}
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-2">
-              <h3 className="text-lg font-semibold group-hover:text-orange-500 transition">
-                {product.title}
-              </h3>
-            </div>
-          </a>
+          <ProductCard key={i} product={product} />
         ))}
       </div>
     </div>
