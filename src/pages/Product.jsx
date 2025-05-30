@@ -1,20 +1,14 @@
 import { useParams } from "react-router-dom";
+import getProducts from "../utils/getProducts";
 
 export default function Product() {
   const { id } = useParams();
 
-  // Placeholder product data
-  const product = {
-    id: id,
-    title: "Elegant Sofa",
-    description: "A luxurious Syrian-style sofa with exquisite craftsmanship.",
-    price: 2499,
-    images: [
-      "/images/category-sofas.jpg",
-      "/images/category-sofas.jpg",
-      "/images/category-sofas.jpg",
-    ],
-  };
+  // Get all products
+  const allProducts = getProducts();
+
+  // Find the real product by ID
+  const product = allProducts.find((p) => p.id === id);
 
   if (!product) {
     return (
@@ -30,8 +24,8 @@ export default function Product() {
       <nav className="text-sm text-gray-600 mb-4">
         <a href="/" className="hover:underline">Home</a>
         <span className="mx-2">/</span>
-        <a href={`/category/${product.category || "sofas"}`} className="hover:underline capitalize">
-          {product.category || "Sofas"}
+        <a href={`/category/${product.category}`} className="hover:underline capitalize">
+          {product.category}
         </a>
         <span className="mx-2">/</span>
         <span className="text-gray-800 font-semibold">{product.title}</span>
