@@ -1,8 +1,11 @@
 export default function ProductCard({ product }) {
-    const hasDiscount = product.discount && product.discount > 0;
+    const discount = product.discount || 0;
+    const price = product.price || 0;
+
+    const hasDiscount = discount > 0;
     const discountedPrice = hasDiscount
-        ? product.price - product.price * (product.discount / 100)
-        : product.price;
+        ? price - price * (discount / 100)
+        : price;
 
     return (
         <a
@@ -19,10 +22,9 @@ export default function ProductCard({ product }) {
             {/* Discount badge */}
             {hasDiscount && (
                 <div className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-bold">
-                    {product.discount}% OFF
+                    {discount}% OFF
                 </div>
             )}
-
 
             {/* Product Image */}
             <img
@@ -39,7 +41,7 @@ export default function ProductCard({ product }) {
                 {/* Pricing */}
                 <div className="flex items-center space-x-2 mb-1">
                     {hasDiscount && (
-                        <span className="text-sm text-gray-400 line-through">${product.price}</span>
+                        <span className="text-sm text-gray-400 line-through">${price.toFixed(2)}</span>
                     )}
 
                     <span className="text-red-500 font-semibold">${discountedPrice.toFixed(2)}</span>
