@@ -11,4 +11,5 @@ topValue: false
 images:
   - /images/uploads/seats-01.jpg
 id: "0004"
+featured: true
 ---
