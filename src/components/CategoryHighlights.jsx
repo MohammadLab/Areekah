@@ -1,6 +1,7 @@
 const categories = [
   { name: "Sofas", image: "/images/category-sofas.jpg", link: "/category/sofas" },
   { name: "Seats", image: "/images/category-seats.jpg", link: "/category/seats" },
+  { name: "Sets", image: "/images/category-sets.jpg", link: "/category/sets" },
   { name: "Tables", image: "/images/category-tables.jpg", link: "/category/tables" },
   { name: "Changing Screens", image: "/images/category-screens.jpg", link: "/category/changing_screen" },
 ];
