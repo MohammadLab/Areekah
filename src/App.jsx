@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Contact from "./pages/Contact";
 import Terms from "./pages/Terms";
 import Product from "./pages/Product";
+import ProductCategory from "./pages/ProductCategory";
 
 
 export default function App() {
@@ -13,10 +14,12 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} /> {/* New About page route */}
+        <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/product/:id" element={<Product />} />
+        <Route path="/category/:type" element={<ProductCategory />} />
+
       </Routes>
     </Router>
   );
