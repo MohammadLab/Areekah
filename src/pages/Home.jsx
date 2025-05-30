@@ -1,6 +1,6 @@
 import HeroSection from "../components/HeroSection";
 import CategoryHighlights from "../components/CategoryHighlights";
-import FeaturedProducts from "../components/FeaturedProducts";
+//import FeaturedProducts from "../components/FeaturedProducts";
 import ShowroomSection from "../components/ShowroomSection";
 
 export default function Home() {

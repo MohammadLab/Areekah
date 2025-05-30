@@ -1,3 +1,4 @@
+{/*
 import ProductCard from "./ProductCard";
 
 const featuredProducts = [
@@ -51,3 +52,4 @@ export default function FeaturedProducts() {
     </div>
   );
 }
+*/}
