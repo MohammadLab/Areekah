@@ -1,8 +1,8 @@
 const featuredProducts = [
-  { title: "Elegant Sofa", image: "/images/slider/slide2.jpg", link: "/product/0001" },
-  { title: "Cozy Armchair", image: "/images/slider/slide3.jpg", link: "/product/0002" },
-  { title: "Wooden Table", image: "/images/slider/slide1.jpg", link: "/product/0003" },
-  { title: "Decorative Screen", image: "/images/slider/slide2.jpg", link: "/product/0004" },
+  { title: "Elegant Sofa", image: "/images/category-sofas.jpg", link: "/product/0001" },
+  { title: "Cozy Armchair", image: "/images/category-seats.jpg", link: "/product/0002" },
+  { title: "Wooden Table", image: "/images/category-tables.jpg", link: "/product/0003" },
+  { title: "Decorative Screen", image: "/images/category-screens.jpg", link: "/product/0004" },
 ];
 
 export default function FeaturedProducts() {
