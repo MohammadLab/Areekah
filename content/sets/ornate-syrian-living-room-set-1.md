@@ -1,5 +1,5 @@
 ---
-title: Ornate Syrian Living Room Set 1
+title: Ornate Syrian Living Room
 category: sets
 description: >+
   A beautifully crafted Syrian living room set featuring a stunning sofa,
