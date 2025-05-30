@@ -9,4 +9,5 @@ topValue: true
 images:
   - /images/uploads/changing_screen-01.jpg
 id: "0001"
+featured: true
 ---
