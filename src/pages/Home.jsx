@@ -8,7 +8,7 @@ export default function Home() {
     <div className="font-arabic text-gray-800">
       <HeroSection />
       <CategoryHighlights />
-      <FeaturedProducts />
+      {/* <FeaturedProducts /> */}
       <ShowroomSection />
     </div>
   );
