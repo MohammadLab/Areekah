@@ -8,5 +8,7 @@ description: >+
 price: 2999
 discount: 10
 topValue: true
-id: "0002"
+images:
+  - /images/uploads/sofas-02.jpg
+id: "0003"
 ---
