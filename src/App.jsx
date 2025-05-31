@@ -8,6 +8,7 @@ import ProductCategory from "./pages/ProductCategory";
 import Product from "./pages/Product";
 import Header from "./components/Header";
 import { CartProvider } from "./context/CartContext";
+import Cart from "./pages/Cart";
 
 export default function App() {
   return (
@@ -21,7 +22,8 @@ export default function App() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/category/:category" element={<ProductCategory />} />
           <Route path="/product/:id" element={<Product />} />
-          {/* Future: /cart */}
+          <Route path="/cart" element={<Cart />} />
+
         </Routes>
       </Router>
     </CartProvider>
