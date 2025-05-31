@@ -3,16 +3,14 @@ import getProducts from "../utils/getProducts";
 import ProductCard from "../components/ProductCard";
 
 export default function ProductCategory() {
-  const { type } = useParams();
+  const { category } = useParams();
   const allProducts = getProducts();
 
-  // Debug logs to inspect data
-  console.log("Category slug:", type);
+  console.log("Category slug:", category);
   console.log("All products:", allProducts);
 
-  // Case-insensitive category matching
   const filteredProducts = allProducts.filter(
-    (product) => product.category?.toLowerCase() === type?.toLowerCase()
+    (product) => product.category?.toLowerCase() === category?.toLowerCase()
   );
 
   console.log("Filtered products:", filteredProducts);
@@ -23,11 +21,11 @@ export default function ProductCategory() {
       <nav className="text-sm text-gray-600 mb-4">
         <a href="/" className="hover:underline">Home</a>
         <span className="mx-2">/</span>
-        <span className="capitalize text-gray-800 font-semibold">{type}</span>
+        <span className="capitalize text-gray-800 font-semibold">{category}</span>
       </nav>
 
       {/* Category title */}
-      <h1 className="text-3xl font-bold capitalize mb-4">{type}</h1>
+      <h1 className="text-3xl font-bold capitalize mb-4">{category}</h1>
 
       {/* Product grid */}
       {filteredProducts.length === 0 ? (
