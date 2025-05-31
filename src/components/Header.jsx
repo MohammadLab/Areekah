@@ -27,14 +27,6 @@ export default function Header() {
           Areekah
         </Link>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          className="md:hidden text-gray-700 text-2xl"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? "✕" : "☰"}
-        </button>
-
         {/* Desktop Navigation */}
         <nav className="hidden md:flex gap-6 text-gray-700 text-sm font-medium">
           <Link to="/" className="hover:text-copper transition">Home</Link>
@@ -54,6 +46,7 @@ export default function Header() {
           </button>
           {showMenu && (
             <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-[700px] bg-white border border-gray-200 rounded shadow-lg p-6 grid grid-cols-3 gap-4 z-50">
+              {/* Mega Menu items */}
               <div>
                 <h4 className="text-lg font-semibold mb-2">Seating</h4>
                 <ul className="space-y-1">
@@ -81,15 +74,23 @@ export default function Header() {
           )}
         </div>
 
-        {/* Cart Icon */}
-        <Link to="/cart" className="relative ml-4 text-xl">
-          🛒
-          {totalItems > 0 && (
-            <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs px-1 rounded-full">
-              {totalItems}
-            </span>
-          )}
-        </Link>
+        {/* Cart and Mobile Menu */}
+        <div className="flex items-center gap-4 md:hidden">
+          <Link to="/cart" className="relative text-xl">
+            🛒
+            {totalItems > 0 && (
+              <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs px-1 rounded-full">
+                {totalItems}
+              </span>
+            )}
+          </Link>
+          <button
+            className="text-gray-700 text-2xl"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? "✕" : "☰"}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Navigation Links */}
