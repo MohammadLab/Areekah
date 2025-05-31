@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import getProducts from "../utils/getProducts";
+import SameCollectionCarousel from "../components/SameCollectionCarousel";
 
 export default function Product() {
   const { id } = useParams();
@@ -92,14 +93,15 @@ export default function Product() {
             <h2 className="text-lg font-semibold mt-4">Product Details</h2>
             <p className="text-sm text-gray-600">Here we’ll add tabs or collapsible sections for specifications, dimensions, shipping & care, etc.</p>
           </div>
-
-          {/* Related Products */}
-          <div>
-            <h2 className="text-lg font-semibold mt-4">Related Products</h2>
-            <p className="text-sm text-gray-600">A carousel or grid of related items will go here.</p>
-          </div>
         </div>
       </div>
+
+      {/* Related Products Carousel */}
+      <SameCollectionCarousel
+        currentProductId={id}
+        category={product.category}
+        allProducts={allProducts}
+      />
 
       {/* Zoomed Image Modal */}
       {zoomedImage && (
