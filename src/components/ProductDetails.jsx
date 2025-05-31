@@ -1,21 +1,10 @@
-
-export default function ProductDetails({ title, description, price, discount }) {
-  const hasDiscount = discount > 0;
-  const discountedPrice = hasDiscount
-    ? price - price * (discount / 100)
-    : price;
+export default function ProductDetails({ product }) {
+  if (!product) return null;
 
   return (
     <div>
-      <h1 className="text-3xl font-bold">{title}</h1>
-      <p className="text-gray-700 my-2">{description}</p>
-
-      <div className="flex items-center gap-2">
-        {hasDiscount && (
-          <span className="text-sm text-gray-400 line-through">${price}</span>
-        )}
-        <span className="text-2xl font-bold text-red-600">${discountedPrice.toFixed(2)}</span>
-      </div>
+      <h1 className="text-3xl font-bold">{product.title}</h1>
+      <p className="text-lg text-gray-700">{product.description}</p>
     </div>
   );
 }
