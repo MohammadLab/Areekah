@@ -4,14 +4,18 @@ import ProductCard from "../components/ProductCard";
 
 export default function ProductCategory() {
   const { type } = useParams();
-
-  // Load all products using the getProducts() function
   const allProducts = getProducts();
 
-  // Filter products based on the category in the URL
+  // Debug logs to inspect data
+  console.log("Category slug:", type);
+  console.log("All products:", allProducts);
+
+  // Case-insensitive category matching
   const filteredProducts = allProducts.filter(
-    (product) => product.category === type
+    (product) => product.category?.toLowerCase() === type?.toLowerCase()
   );
+
+  console.log("Filtered products:", filteredProducts);
 
   return (
     <div className="max-w-6xl mx-auto p-4 space-y-4 font-arabic text-gray-800">
