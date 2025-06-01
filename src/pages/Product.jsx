@@ -2,16 +2,18 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import getProducts from "../utils/getProducts";
 import SameCollectionCarousel from "../components/SameCollectionCarousel";
-import { useCart } from "../context/CartContext"; // ✅ Import Cart Context
+import { useCart } from "../context/CartContext";
+import { useCurrency } from "../context/CurrencyContext"; // ✅ Import Currency Context
 
 export default function Product() {
   const { id } = useParams();
   const allProducts = getProducts();
   const product = allProducts.find((p) => p.id === id);
 
-  const { addToCart } = useCart(); // ✅ Use Cart Context
+  const { addToCart } = useCart();
+  const { convert, currency } = useCurrency(); // ✅ Use Currency Context
   const [zoomedImage, setZoomedImage] = useState(null);
-  const [quantity, setQuantity] = useState(1); // ✅ Track quantity
+  const [quantity, setQuantity] = useState(1);
 
   if (!product) {
     return (
@@ -28,7 +30,7 @@ export default function Product() {
     : product.price;
 
   const handleAddToCart = () => {
-    addToCart(product, Number(quantity)); // ✅ Add to Cart with quantity
+    addToCart(product, Number(quantity));
   };
 
   return (
@@ -76,9 +78,13 @@ export default function Product() {
 
           <div className="flex items-center space-x-2">
             {hasDiscount && (
-              <span className="text-lg text-gray-400 line-through">${product.price}</span>
+              <span className="text-lg text-gray-400 line-through">
+                {convert(product.price)} {currency}
+              </span>
             )}
-            <span className="text-2xl text-red-600 font-bold">${discountedPrice.toFixed(2)}</span>
+            <span className="text-2xl text-red-600 font-bold">
+              {convert(discountedPrice)} {currency}
+            </span>
           </div>
 
           <div className="flex items-center space-x-2">
@@ -92,7 +98,7 @@ export default function Product() {
               className="w-16 border rounded px-2 py-1"
             />
             <button
-              onClick={handleAddToCart} // ✅ Add to Cart logic
+              onClick={handleAddToCart}
               className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 transition"
             >
               Add to Cart

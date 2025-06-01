@@ -1,9 +1,11 @@
 import { useCart } from "../context/CartContext";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useCurrency } from "../context/CurrencyContext"; // ✅ Import Currency Context
 
 export default function Cart() {
   const { cartItems, removeFromCart, clearCart, updateQuantity } = useCart();
+  const { convert, currency } = useCurrency(); // ✅ Use Currency Context
 
   const total = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -63,7 +65,9 @@ export default function Cart() {
                 >
                   {item.title}
                 </Link>
-                <p className="text-sm text-gray-500">${item.price}</p>
+                <p className="text-sm text-gray-500">
+                  {convert(item.price)} {currency}
+                </p>
 
                 {/* Quantity Controls */}
                 <div className="flex items-center gap-2 mt-1">
@@ -85,7 +89,7 @@ export default function Cart() {
             </div>
             <div className="flex items-center gap-2">
               <p className="text-lg font-semibold text-red-600">
-                ${(item.price * item.quantity).toFixed(2)}
+                {convert(item.price * item.quantity)} {currency}
               </p>
               <button
                 onClick={() => removeFromCart(item.id)}
@@ -111,7 +115,7 @@ export default function Cart() {
         <div className="text-right">
           <h2 className="text-lg font-bold">Order Summary</h2>
           <p className="text-xl font-bold text-red-600">
-            Total: ${total.toFixed(2)}
+            Total: {convert(total)} {currency}
           </p>
         </div>
       </div>

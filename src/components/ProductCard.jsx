@@ -1,13 +1,17 @@
+import { useCurrency } from "../context/CurrencyContext";
+
 export default function ProductCard({ product }) {
   if (!product) return null; // Guard against undefined product
 
   const discount = product.discount || 0;
   const price = product.price || 0;
-
   const hasDiscount = discount > 0;
+
   const discountedPrice = hasDiscount
     ? price - price * (discount / 100)
     : price;
+
+  const { convert, currency } = useCurrency();
 
   return (
     <a
@@ -43,10 +47,13 @@ export default function ProductCard({ product }) {
         {/* Pricing */}
         <div className="flex items-center space-x-2 mb-1">
           {hasDiscount && (
-            <span className="text-sm text-gray-400 line-through">${price.toFixed(2)}</span>
+            <span className="text-sm text-gray-400 line-through">
+              {convert(price)} {currency}
+            </span>
           )}
-
-          <span className="text-red-500 font-semibold">${discountedPrice.toFixed(2)}</span>
+          <span className="text-red-500 font-semibold">
+            {convert(discountedPrice)} {currency}
+          </span>
         </div>
 
         {/* Stock and Shipping */}

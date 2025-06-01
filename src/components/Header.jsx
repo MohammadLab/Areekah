@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { useCurrency } from "../context/CurrencyContext";
 import { useState, useRef } from "react";
 
 export default function Header() {
   const { totalItems } = useCart();
+  const { currency, setCurrency } = useCurrency();
   const [showMenu, setShowMenu] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const timeoutRef = useRef(null);
@@ -50,33 +52,44 @@ export default function Header() {
               <div>
                 <h4 className="text-lg font-semibold mb-2">Seating</h4>
                 <ul className="space-y-1">
-                  <li><Link to="/category/sofas" className="hover:text-copper transition" onClick={() => setShowMenu(false)}>Sofas</Link></li>
-                  <li><Link to="/category/seats" className="hover:text-copper transition" onClick={() => setShowMenu(false)}>Seats</Link></li>
-                  <li><Link to="/category/sets" className="hover:text-copper transition" onClick={() => setShowMenu(false)}>Sets</Link></li>
+                  <li><Link to="/category/sofas" onClick={() => setShowMenu(false)}>Sofas</Link></li>
+                  <li><Link to="/category/seats" onClick={() => setShowMenu(false)}>Seats</Link></li>
+                  <li><Link to="/category/sets" onClick={() => setShowMenu(false)}>Sets</Link></li>
                 </ul>
               </div>
               <div>
                 <h4 className="text-lg font-semibold mb-2">Tables & Screens</h4>
                 <ul className="space-y-1">
-                  <li><Link to="/category/tables" className="hover:text-copper transition" onClick={() => setShowMenu(false)}>Tables</Link></li>
-                  <li><Link to="/category/changing_screen" className="hover:text-copper transition" onClick={() => setShowMenu(false)}>Changing Screens</Link></li>
+                  <li><Link to="/category/tables" onClick={() => setShowMenu(false)}>Tables</Link></li>
+                  <li><Link to="/category/changing_screen" onClick={() => setShowMenu(false)}>Changing Screens</Link></li>
                 </ul>
               </div>
               <div>
                 <h4 className="text-lg font-semibold mb-2">More</h4>
                 <ul className="space-y-1">
-                  <li><Link to="/about" className="hover:text-copper transition" onClick={() => setShowMenu(false)}>About Us</Link></li>
-                  <li><Link to="/contact" className="hover:text-copper transition" onClick={() => setShowMenu(false)}>Contact</Link></li>
-                  <li><Link to="/terms" className="hover:text-copper transition" onClick={() => setShowMenu(false)}>Terms & Privacy</Link></li>
+                  <li><Link to="/about" onClick={() => setShowMenu(false)}>About Us</Link></li>
+                  <li><Link to="/contact" onClick={() => setShowMenu(false)}>Contact</Link></li>
+                  <li><Link to="/terms" onClick={() => setShowMenu(false)}>Terms & Privacy</Link></li>
                 </ul>
               </div>
             </div>
           )}
         </div>
 
-        {/* Cart and Mobile Menu */}
-        <div className="flex items-center gap-4">
-          {/* Cart Icon - always visible */}
+        {/* Cart, Currency Selector, Mobile Menu */}
+        <div className="flex items-center gap-2">
+          {/* Currency Selector */}
+          <select
+            value={currency}
+            onChange={(e) => setCurrency(e.target.value)}
+            className="border rounded text-sm px-2 py-1 bg-white text-gray-700"
+          >
+            <option value="CAD">CAD</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+          </select>
+
+          {/* Cart Icon */}
           <Link to="/cart" className="relative text-xl">
             🛒
             {totalItems > 0 && (
@@ -86,7 +99,7 @@ export default function Header() {
             )}
           </Link>
 
-          {/* Hamburger Menu - only on mobile */}
+          {/* Hamburger Menu */}
           <button
             className="md:hidden text-gray-700 text-2xl"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
