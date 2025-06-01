@@ -1,7 +1,33 @@
 import { useCart } from "../context/CartContext";
+import { useEffect } from "react";
 
 export default function Cart() {
   const { cartItems, removeFromCart, clearCart, updateQuantity } = useCart();
+
+  const total = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+
+  useEffect(() => {
+    if (window.paypal && cartItems.length > 0) {
+      window.paypal.Buttons({
+        createOrder: (data, actions) => {
+          return actions.order.create({
+            purchase_units: [{
+              amount: { value: total.toFixed(2) },
+            }],
+          });
+        },
+        onApprove: (data, actions) => {
+          return actions.order.capture().then((details) => {
+            alert("Transaction completed by " + details.payer.name.given_name);
+            clearCart();
+          });
+        },
+      }).render("#paypal-button-container");
+    }
+  }, [cartItems, total, clearCart]);
 
   if (cartItems.length === 0) {
     return (
@@ -11,11 +37,6 @@ export default function Cart() {
       </div>
     );
   }
-
-  const total = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
 
   return (
     <div className="max-w-6xl mx-auto p-4 font-arabic text-gray-800">
@@ -88,6 +109,9 @@ export default function Cart() {
           </p>
         </div>
       </div>
+
+      {/* PayPal Button */}
+      <div id="paypal-button-container" className="mt-4"></div>
     </div>
   );
 }
