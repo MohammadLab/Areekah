@@ -45,6 +45,17 @@ export const CartProvider = ({ children }) => {
     setCartItems([]);
   };
 
+  // Update quantity
+  const updateQuantity = (id, quantity) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === id
+          ? { ...item, quantity: quantity > 0 ? quantity : 1 }
+          : item
+      )
+    );
+  };
+
   // Get total items
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -55,6 +66,7 @@ export const CartProvider = ({ children }) => {
         addToCart,
         removeFromCart,
         clearCart,
+        updateQuantity, // Add this here!
         totalItems,
       }}
     >
