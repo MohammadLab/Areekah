@@ -98,12 +98,6 @@ export default function Product() {
               Add to Cart
             </button>
           </div>
-
-          {/* Details Tabs */}
-          <div>
-            <h2 className="text-lg font-semibold mt-4">Product Details</h2>
-            <p className="text-sm text-gray-600">Here we’ll add tabs or collapsible sections for specifications, dimensions, shipping & care, etc.</p>
-          </div>
         </div>
       </div>
 

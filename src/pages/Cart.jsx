@@ -1,5 +1,6 @@
 import { useCart } from "../context/CartContext";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function Cart() {
   const { cartItems, removeFromCart, clearCart, updateQuantity } = useCart();
@@ -56,7 +57,12 @@ export default function Cart() {
                 className="w-20 h-20 object-cover rounded"
               />
               <div>
-                <h3 className="font-semibold text-lg">{item.title}</h3>
+                <Link
+                  to={`/product/${item.id}`}
+                  className="font-semibold text-lg hover:underline"
+                >
+                  {item.title}
+                </Link>
                 <p className="text-sm text-gray-500">${item.price}</p>
 
                 {/* Quantity Controls */}
