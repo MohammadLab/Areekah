@@ -61,13 +61,6 @@ export default function Terms() {
           We reserve the right to update or modify these Terms and Conditions at any time. Changes will be effective immediately upon posting on our website. Please review them regularly to stay informed.
         </p>
       </div>
-
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold">Contact Us</h2>
-        <p className="text-gray-600">
-          If you have any questions about these Terms and Conditions, please contact us at <a href="mailto:moe.labak@gmail.com" className="text-orange-500 underline">moe.labak@gmail.com</a>. We’re always here to help.
-        </p>
-      </div>
     </div>
   );
 }
