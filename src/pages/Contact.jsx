@@ -58,13 +58,6 @@ export default function Contact() {
           Send Message
         </button>
       </form>
-
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold">Our Contact Information</h2>
-        <p className="text-gray-600">
-          Email us directly at <a href="mailto:moe.labak@gmail.com" className="text-orange-500 underline">moe.labak@gmail.com</a> if you prefer. We're happy to assist!
-        </p>
-      </div>
     </div>
   );
 }
