@@ -1,21 +1,7 @@
 import { useCart } from "../context/CartContext";
-import { loadStripe } from "@stripe/stripe-js";
-
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 export default function Cart() {
   const { cartItems, removeFromCart, clearCart, updateQuantity } = useCart();
-
-  const handleCheckout = async () => {
-    const response = await fetch("https://furniture-catalog-backend.onrender.com/create-checkout-session", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items: cartItems }),
-    });
-    const session = await response.json();
-    const stripe = await stripePromise;
-    await stripe.redirectToCheckout({ sessionId: session.id });
-  };
 
   if (cartItems.length === 0) {
     return (
