@@ -75,7 +75,8 @@ export default function Header() {
         </div>
 
         {/* Cart and Mobile Menu */}
-        <div className="flex items-center gap-4 md:hidden">
+        <div className="flex items-center gap-4">
+          {/* Cart Icon - always visible */}
           <Link to="/cart" className="relative text-xl">
             🛒
             {totalItems > 0 && (
@@ -84,8 +85,10 @@ export default function Header() {
               </span>
             )}
           </Link>
+
+          {/* Hamburger Menu - only on mobile */}
           <button
-            className="text-gray-700 text-2xl"
+            className="md:hidden text-gray-700 text-2xl"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? "✕" : "☰"}
