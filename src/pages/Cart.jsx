@@ -1,7 +1,21 @@
 import { useCart } from "../context/CartContext";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 export default function Cart() {
-  const { cartItems, removeFromCart, clearCart } = useCart();
+  const { cartItems, removeFromCart, clearCart, updateQuantity } = useCart();
+
+  const handleCheckout = async () => {
+    const response = await fetch("https://furniture-catalog-backend.onrender.com/create-checkout-session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ items: cartItems }),
+    });
+    const session = await response.json();
+    const stripe = await stripePromise;
+    await stripe.redirectToCheckout({ sessionId: session.id });
+  };
 
   if (cartItems.length === 0) {
     return (
@@ -36,9 +50,24 @@ export default function Cart() {
               />
               <div>
                 <h3 className="font-semibold text-lg">{item.title}</h3>
-                <p className="text-sm text-gray-500">
-                  ${item.price} x {item.quantity}
-                </p>
+                <p className="text-sm text-gray-500">${item.price}</p>
+
+                {/* Quantity Controls */}
+                <div className="flex items-center gap-2 mt-1">
+                  <button
+                    onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                    className="px-2 py-1 bg-gray-200 rounded"
+                  >
+                    –
+                  </button>
+                  <span>{item.quantity}</span>
+                  <button
+                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                    className="px-2 py-1 bg-gray-200 rounded"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -71,9 +100,11 @@ export default function Cart() {
           <p className="text-xl font-bold text-red-600">
             Total: ${total.toFixed(2)}
           </p>
-          {/* Checkout button placeholder */}
-          <button className="mt-2 px-6 py-2 bg-black text-white rounded hover:bg-gray-800 transition">
-            Checkout
+          <button
+            onClick={handleCheckout}
+            className="mt-2 px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition"
+          >
+            Proceed to Checkout
           </button>
         </div>
       </div>
